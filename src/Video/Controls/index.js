@@ -14,8 +14,8 @@ function Controls() {
   return (
     <Styled.Wrapper>
       <div>
-        <Time>{state.time}</Time> / <Time>{state.duration}</Time>
         <PlayToggle />
+        <Time>{state.time}</Time> / <Time>{state.duration}</Time>
         <SeekBar />
         <MuteToggle />
       </div>
@@ -27,4 +27,5 @@ const Time = ({ children }) => TimeFormat.fromS(Math.ceil(children))
 
 // Controls.propTypes = {}
 
+export { PlayToggle, SeekBar, MuteToggle }
 export default Controls
