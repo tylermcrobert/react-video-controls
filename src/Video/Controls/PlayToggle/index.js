@@ -13,26 +13,31 @@ function PlayToggle({ children }) {
 }
 
 function ToggleButton(props) {
-  const { children } = props
+  const { children, control, isPauseBtn } = props
+  const { state } = useContext(VideoCtx)
   const ctx = useContext(ToggleCtx)
   const toggleEnabled = !!(ctx && ctx.toggle === true)
+  const shouldShow = toggleEnabled && state.isPlaying === isPauseBtn
 
-  console.log(toggleEnabled)
+  console.log(!toggleEnabled)
   return (
-    <div onClick={props.control} {...props}>
-      {children}
-    </div>
+    shouldShow ||
+    (!toggleEnabled && (
+      <div onClick={control} {...props}>
+        {children}
+      </div>
+    ))
   )
 }
 
 function Play(props) {
   const { controls } = useContext(VideoCtx)
-  return <ToggleButton control={controls.play} {...props} />
+  return <ToggleButton control={controls.play} {...props} isPauseBtn={false} />
 }
 
 function Pause(props) {
   const { controls } = useContext(VideoCtx)
-  return <ToggleButton control={controls.pause} {...props} />
+  return <ToggleButton control={controls.pause} {...props} isPauseBtn={true} />
 }
 
 PlayToggle.Play = Play

@@ -10,9 +10,10 @@ function PrettyVideo({ src }) {
           <div>
             {props.video}
             <SeekBar />
-            'asdf'
+
             <PlayToggle.Pause>PAUSE</PlayToggle.Pause>
             <PlayToggle.Play>PLAY!</PlayToggle.Play>
+
             {console.log(props)}
           </div>
         )}
