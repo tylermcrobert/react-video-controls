@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Styled from './Styled'
-import { VideoCtx } from '../..'
+import { VideoCtx } from '..'
 
 // import PropTypes from 'prop-types'
 
@@ -46,16 +46,14 @@ function SeekBar() {
   }
 
   return (
-    <Styled.Wrapper>
-      <input
-        type="range"
-        max={STEPS}
-        min="0"
-        onChange={handleDrag}
-        value={dragging ? uiPercent * STEPS : (time / duration) * STEPS}
-        onMouseUp={() => setDragging(false)}
-      />
-    </Styled.Wrapper>
+    <Styled.Range
+      type="range"
+      max={STEPS}
+      min="0"
+      onChange={handleDrag}
+      value={dragging ? uiPercent * STEPS : (time / duration) * STEPS}
+      onMouseUp={() => setDragging(false)}
+    />
   )
 }
 

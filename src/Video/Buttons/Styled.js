@@ -8,6 +8,7 @@ const Button = styled.button`
   padding: 0;
   width: auto;
   overflow: visible;
+  text-align: left;
 
   background: transparent;
 

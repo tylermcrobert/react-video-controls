@@ -1,8 +1,6 @@
 import styled from 'styled-components/macro'
 
-const Wrapper = styled.div`
-  border: 1px solid blue;
-`
+const Wrapper = styled.div``
 
 const Video = styled.video`
   width: 100%;

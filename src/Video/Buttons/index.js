@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { VideoCtx } from '../..'
+import { VideoCtx } from '..'
 import Styled from './Styled'
 
 export function Play(props) {
@@ -10,4 +10,14 @@ export function Play(props) {
 export function Pause(props) {
   const { controls } = useContext(VideoCtx)
   return <Styled.Button onClick={controls.pause} {...props} />
+}
+
+export function Mute(props) {
+  const { controls } = useContext(VideoCtx)
+  return <Styled.Button onClick={controls.mute} {...props} />
+}
+
+export function Unmute(props) {
+  const { controls } = useContext(VideoCtx)
+  return <Styled.Button onClick={controls.unmute} {...props} />
 }
