@@ -12,11 +12,11 @@ function PrettyVideo({ src }) {
 }
 
 function VideoContent() {
-  const { video, state } = useContext(VideoCtx)
+  const { video, state, controls } = useContext(VideoCtx)
 
   return (
     <div>
-      {video}
+      <div onClick={controls.togglePlay}>{video}</div>
       <Styled.Wrapper>
         {state.isPlaying ? (
           <Styled.Pause>Pause</Styled.Pause>

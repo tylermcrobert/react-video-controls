@@ -12,9 +12,13 @@ function Video({ src, className, autoPlay, children }) {
     <Styled.Video src={src} className={className} autoPlay={autoPlay} />
   )
 
+  const togglePlay = state.isPlaying ? functions.pause : functions.play
+
   return (
     <Styled.Wrapper>
-      <VideoCtx.Provider value={{ state, ref, controls: functions, video }}>
+      <VideoCtx.Provider
+        value={{ state, ref, controls: { ...functions, togglePlay }, video }}
+      >
         {children}
       </VideoCtx.Provider>
     </Styled.Wrapper>
