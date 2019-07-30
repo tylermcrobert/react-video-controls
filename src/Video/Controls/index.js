@@ -4,7 +4,7 @@ import TimeFormat from 'hh-mm-ss'
 import Styled from './Styled'
 import { VideoCtx } from '..'
 import SeekBar from './SeekBar'
-import PlayToggle from './PlayToggle'
+import { Play, Pause } from './PlayToggle'
 import MuteToggle from './MuteToggle'
 // import PropTypes from 'prop-types'
 
@@ -14,7 +14,6 @@ function Controls() {
   return (
     <Styled.Wrapper>
       <div>
-        <PlayToggle />
         <Time>{state.time}</Time> / <Time>{state.duration}</Time>
         <SeekBar />
         <MuteToggle />
@@ -27,5 +26,5 @@ const Time = ({ children }) => TimeFormat.fromS(Math.ceil(children))
 
 // Controls.propTypes = {}
 
-export { PlayToggle, SeekBar, MuteToggle }
+export { SeekBar, MuteToggle, Play, Pause }
 export default Controls

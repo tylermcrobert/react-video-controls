@@ -1,48 +1,13 @@
-import React, { useContext, createContext } from 'react'
-
+import React, { useContext } from 'react'
 import { VideoCtx } from '../..'
-// import PropTypes from 'prop-types'
+import Styled from './Styled'
 
-const ToggleCtx = createContext()
-function PlayToggle({ children }) {
-  const { state, controls } = useContext(VideoCtx)
-
-  return (
-    <ToggleCtx.Provider value={{ toggle: true }}>{children}</ToggleCtx.Provider>
-  )
-}
-
-function ToggleButton(props) {
-  const { children, control, isPauseBtn } = props
-  const { state } = useContext(VideoCtx)
-  const ctx = useContext(ToggleCtx)
-  const toggleEnabled = !!(ctx && ctx.toggle === true)
-  const shouldShow = toggleEnabled && state.isPlaying === isPauseBtn
-
-  console.log(!toggleEnabled)
-  return (
-    shouldShow ||
-    (!toggleEnabled && (
-      <div onClick={control} {...props}>
-        {children}
-      </div>
-    ))
-  )
-}
-
-function Play(props) {
+export function Play(props) {
   const { controls } = useContext(VideoCtx)
-  return <ToggleButton control={controls.play} {...props} isPauseBtn={false} />
+  return <Styled.Button onClick={controls.play} {...props} />
 }
 
-function Pause(props) {
+export function Pause(props) {
   const { controls } = useContext(VideoCtx)
-  return <ToggleButton control={controls.pause} {...props} isPauseBtn={true} />
+  return <Styled.Button onClick={controls.pause} {...props} />
 }
-
-PlayToggle.Play = Play
-PlayToggle.Pause = Pause
-
-// PlayToggle.propTypes = {}
-
-export default PlayToggle

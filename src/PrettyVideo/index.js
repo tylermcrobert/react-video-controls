@@ -1,31 +1,25 @@
 import React, { useContext } from 'react'
 // import PropTypes from 'prop-types'
-import Video, { VideoCtx, SeekBar, PlayToggle } from '../Video'
+import Video, { VideoCtx, SeekBar, Play, Pause } from '../Video'
 
 function PrettyVideo({ src }) {
   return (
     <Video src={src}>
-      <VideoCtx.Consumer>
-        {props => (
-          <div>
-            {props.video}
-            <SeekBar />
-
-            <PlayToggle.Pause>PAUSE</PlayToggle.Pause>
-            <PlayToggle.Play>PLAY!</PlayToggle.Play>
-
-            {console.log(props)}
-          </div>
-        )}
-      </VideoCtx.Consumer>
+      <VideoContent />
     </Video>
   )
 }
 
-function Fuck() {
-  const data = useContext(VideoCtx)
-  console.log(data)
-  return 'asdf'
+function VideoContent() {
+  const { video, state } = useContext(VideoCtx)
+
+  return (
+    <div>
+      {video}
+      <Play>Play</Play>
+      <Pause>Pause</Pause>
+    </div>
+  )
 }
 
 // PrettyVideo.propTypes = {}

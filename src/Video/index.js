@@ -2,7 +2,7 @@ import React, { createContext } from 'react'
 import { useVideo } from 'react-use'
 import PropTypes from 'prop-types'
 import Styled from './Styled'
-import { MuteToggle, PlayToggle, SeekBar } from './Controls'
+import { MuteToggle, Play, Pause, SeekBar } from './Controls'
 export const VideoCtx = createContext()
 
 function Video({ src, className, autoPlay, children }) {
@@ -24,5 +24,5 @@ Video.propTypes = {
   src: PropTypes.string.isRequired,
 }
 
-export { MuteToggle, PlayToggle, SeekBar }
+export { MuteToggle, Play, Pause, SeekBar }
 export default Video
