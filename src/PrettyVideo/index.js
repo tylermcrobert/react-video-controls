@@ -23,6 +23,9 @@ function VideoContent() {
         ) : (
           <Styled.Play>Play</Styled.Play>
         )}
+        <div>
+          {state.formatted.time} / {state.formatted.duration}
+        </div>
         <SeekBar />
         {state.muted ? (
           <Styled.Unmute>Un-Mute</Styled.Unmute>
@@ -30,6 +33,8 @@ function VideoContent() {
           <Styled.Mute>Mute</Styled.Mute>
         )}
       </Styled.Wrapper>
+      <hr />
+      <pre style={{ opacity: 0.4 }}>{JSON.stringify(state, null, 2)}</pre>
     </div>
   )
 }

@@ -3,13 +3,14 @@ import * as Controls from '../Video'
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  grid-gap: 1rem;
 `
 
 const buttonStyle = css`
   width: 5rem;
   height: 5rem;
-  margin: 1rem;
   border-radius: 50%;
 
   display: flex;

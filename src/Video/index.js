@@ -4,7 +4,15 @@ import PropTypes from 'prop-types'
 import Styled from './Styled'
 import SeekBar from './SeekBar'
 import { Play, Pause, Mute, Unmute } from './Buttons'
+
+import TimeFormat from 'hh-mm-ss'
 export const VideoCtx = createContext()
+
+function formatSecs(secs) {
+  const rounded = Math.round(secs)
+  const formatted = TimeFormat.fromS(rounded)
+  return formatted
+}
 
 function Video({ src, className, autoPlay, children }) {
   const [video, state, functions, ref] = useVideo(
@@ -13,11 +21,20 @@ function Video({ src, className, autoPlay, children }) {
   )
 
   const togglePlay = state.isPlaying ? functions.pause : functions.play
+  const formatted = {
+    duration: formatSecs(state.duration),
+    time: formatSecs(state.time),
+  }
 
   return (
     <Styled.Wrapper>
       <VideoCtx.Provider
-        value={{ state, ref, controls: { ...functions, togglePlay }, video }}
+        value={{
+          state: { ...state, formatted },
+          ref,
+          controls: { ...functions, togglePlay },
+          video,
+        }}
       >
         {children}
       </VideoCtx.Provider>
