@@ -12,26 +12,16 @@ function PrettyVideo({ src }) {
 }
 
 function VideoContent() {
-  const { video, state, controls } = useContext(VideoCtx)
+  const { video, state, controls, ref } = useContext(VideoCtx)
 
   return (
     <div>
       <div onClick={controls.togglePlay}>{video}</div>
       <Styled.Wrapper>
-        {state.isPlaying ? (
-          <Styled.Pause>Pause</Styled.Pause>
-        ) : (
-          <Styled.Play>Play</Styled.Play>
-        )}
-        <div>
-          {state.formatted.time} / {state.formatted.duration}
-        </div>
+        <PlayToggle />
+        <Time />
         <SeekBar />
-        {state.muted ? (
-          <Styled.Unmute>Un-Mute</Styled.Unmute>
-        ) : (
-          <Styled.Mute>Mute</Styled.Mute>
-        )}
+        <MuteToggle />
       </Styled.Wrapper>
       <hr />
       <pre style={{ opacity: 0.4 }}>{JSON.stringify(state, null, 2)}</pre>
@@ -39,6 +29,32 @@ function VideoContent() {
   )
 }
 
+function Time() {
+  const { state } = useContext(VideoCtx)
+  return (
+    <div>
+      {state.formatted.time} / {state.formatted.duration}
+    </div>
+  )
+}
+
+function PlayToggle() {
+  const { state } = useContext(VideoCtx)
+  return state.isPlaying ? (
+    <Styled.Pause>Pause</Styled.Pause>
+  ) : (
+    <Styled.Play>Play</Styled.Play>
+  )
+}
+
+function MuteToggle() {
+  const { state } = useContext(VideoCtx)
+  return state.muted ? (
+    <Styled.Unmute>Un-Mute</Styled.Unmute>
+  ) : (
+    <Styled.Mute>Mute</Styled.Mute>
+  )
+}
 // PrettyVideo.propTypes = {}
 
 export default PrettyVideo
