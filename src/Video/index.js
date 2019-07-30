@@ -12,10 +12,9 @@ function Video({ src, className, autoPlay }) {
     <Styled.Video src={src} className={className} autoPlay={autoPlay} />
   )
 
-  console.log({ state, functions, ref })
   return (
     <Styled.Wrapper>
-      <VideoCtx.Provider value={{ state, controls: functions }}>
+      <VideoCtx.Provider value={{ state, ref, controls: functions }}>
         {video}
         <Controls />
       </VideoCtx.Provider>
