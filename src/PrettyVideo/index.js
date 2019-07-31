@@ -3,9 +3,9 @@ import React, { useContext } from 'react'
 import Video, { VideoCtx, SeekBar } from '../Video'
 import Styled from './Styled'
 
-function PrettyVideo({ src }) {
+function PrettyVideo({ src, muted, autoPlay, loop }) {
   return (
-    <Video src={src}>
+    <Video {...{ src, muted, autoPlay, loop }}>
       <VideoContent />
     </Video>
   )
@@ -33,7 +33,7 @@ function VideoContent() {
         )}
         <Styled.Fullscreen>FullScreen</Styled.Fullscreen>
       </Styled.Wrapper>
-      <hr />
+      {/* <hr /> */}
       {/* <pre style={{ opacity: 0.4 }}>{JSON.stringify(state, null, 2)}</pre> */}
     </div>
   )

@@ -4,7 +4,12 @@ import PrettyVideo from './PrettyVideo/index.js'
 function App() {
   return (
     <div className="App">
-      <PrettyVideo src="http://assets.instrument.com/videos/Studio-Reel/Instrument_Reel_2018_Loop_1920.webm">
+      <PrettyVideo
+        src="http://d39tpa37kkhgnr.cloudfront.net/This_LevisSkateboarding_Video02.mp4"
+        muted
+        autoPlay
+        loop
+      >
         asdf
       </PrettyVideo>
     </div>

@@ -42,7 +42,7 @@ const Unmute = styled(Controls.Unmute)`
 
 const Fullscreen = styled(Controls.Fullscreen)`
   ${buttonStyle}
-  background: purple;
+  background: red;
 `
 
 export default { Play, Pause, Wrapper, Mute, Unmute, Fullscreen }
