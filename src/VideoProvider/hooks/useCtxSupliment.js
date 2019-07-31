@@ -1,5 +1,5 @@
-import formatSecs from '../util/formatSecs'
 import screenfull from 'screenfull'
+import formatSecs from '../util/formatSecs'
 
 export default function useContextSuppliment(ctxValue) {
   const [video, state, functions, ref] = ctxValue

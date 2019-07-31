@@ -1,8 +1,16 @@
 import React, { useContext } from 'react'
 // import PropTypes from 'prop-types'
-import VideoProvider, { VideoCtx, SeekBar } from '../VideoProvider'
+
 import Styled from './Styled'
-import { Mute, Play, Pause, Unmute, Fullscreen } from '../VideoProvider'
+import VideoProvider, {
+  Mute,
+  Play,
+  Pause,
+  Unmute,
+  Fullscreen,
+  VideoCtx,
+  SeekBar,
+} from '../VideoProvider'
 
 function UglyVideo() {
   const { video, state } = useContext(VideoCtx)

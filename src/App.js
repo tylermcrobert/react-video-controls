@@ -1,9 +1,9 @@
 import React from 'react'
-import PrettyVideo from './PrettyVideo/index.js'
-import UglyVideo from './UglyVideo/index.js'
-import ThisVideo from './ThisVideo/index.js'
-import './app.css'
 import styled from 'styled-components'
+import PrettyVideo from './PrettyVideo/index'
+import UglyVideo from './UglyVideo/index'
+import ThisVideo from './ThisVideo/index'
+import './app.css'
 
 function App() {
   return (

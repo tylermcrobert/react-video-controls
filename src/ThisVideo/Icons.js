@@ -2,7 +2,7 @@ import React from 'react'
 
 export const FullScreen = () => (
   <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="#FFF" stroke-width="1.5" fill="none">
+    <g stroke="#FFF" strokeWidth="1.5" fill="none">
       <path d="M1 8V1h7M13 6v7H6" />
     </g>
   </svg>
