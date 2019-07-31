@@ -1,21 +1,35 @@
-import React from 'react'
+import React, { createContext, useContext } from 'react'
 import Styled from './Styled'
-import useSeek from './hooks/useSeek'
+import useControls from './hooks/useControls'
+import { VideoCtx } from '..'
+
+const SeekBarCtx = createContext()
 
 function SeekBar() {
-  const { handleChange, value, handleMouseUp, max } = useSeek()
+  const { seekPercent, childRef, parentRef, dragging } = useControls()
   return (
-    <Styled.Range
-      type="range"
-      max={max}
-      min="0"
-      onChange={handleChange}
-      value={value}
-      onMouseUp={handleMouseUp}
+    <Styled.Bar ref={parentRef}>
+      <SeekBarCtx.Provider value={{ seekPercent, childRef, dragging }}>
+        <Progress />
+      </SeekBarCtx.Provider>
+    </Styled.Bar>
+  )
+}
+
+function Progress() {
+  const { seekPercent, childRef, dragging } = useContext(SeekBarCtx)
+  const { state } = useContext(VideoCtx)
+  const playedPercent = state.time / state.duration || 0
+
+  return (
+    <Styled.Progress
+      percent={dragging ? seekPercent : playedPercent}
+      ref={childRef}
     />
   )
 }
 
 // SeekBar.propTypes = {}
 
-export default SeekBar
+SeekBar.Progress = Progress
+export default React.memo(SeekBar)

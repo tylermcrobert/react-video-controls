@@ -13,4 +13,18 @@ const Range = styled.input`
   }
 `
 
-export default { Range }
+const Bar = styled.div`
+  height: 5px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+`
+
+const Progress = styled.div`
+  background: orangered;
+  width: 100%;
+  height: 100%;
+
+  transform: translateX(${props => props.percent * 100 - 100}%);
+`
+export default { Range, Bar, Progress }

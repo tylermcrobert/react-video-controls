@@ -22,7 +22,7 @@ function App() {
       </Section>
       <Section>
         <ThisVideo
-          src="http://d39tpa37kkhgnr.cloudfront.net/This_LevisSkateboarding_Video02.mp4"
+          src="https://s3-us-west-2.amazonaws.com/thisdesign/01.mp4"
           loop
         />
       </Section>
