@@ -12,7 +12,8 @@ function UglyVideo() {
       <SeekBar />
       <Play>Play</Play>
       <Pause>Pause</Pause>
-      {state.formatted.time} / {state.formatted.duration}
+      {state.formatted.time}
+      {state.formatted.duration}
       <Mute>Mute</Mute>
       <Unmute>Un-Mute</Unmute>
       <Fullscreen>FullScreen</Fullscreen>

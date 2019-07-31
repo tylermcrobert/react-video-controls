@@ -9,6 +9,10 @@ const Wrapper = styled.div`
     border: 1px solid #ccc;
     margin-right: 0.2rem;
   }
+  input {
+    display: inline-block;
+    width: 150px;
+  }
 `
 
 export default { Wrapper }

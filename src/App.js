@@ -11,23 +11,18 @@ function App() {
       <Section>
         <UglyVideo
           src="http://d39tpa37kkhgnr.cloudfront.net/This_LevisSkateboarding_Video02.mp4"
-          muted
-          autoPlay
           loop
         />
       </Section>
       <Section>
         <PrettyVideo
           src="http://d39tpa37kkhgnr.cloudfront.net/This_LevisSkateboarding_Video02.mp4"
-          muted
-          autoPlay
           loop
         />
       </Section>
       <Section>
         <ThisVideo
           src="http://d39tpa37kkhgnr.cloudfront.net/This_LevisSkateboarding_Video02.mp4"
-          muted
           loop
         />
       </Section>
