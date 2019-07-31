@@ -14,7 +14,6 @@ const Range = styled.input`
 `
 
 const Bar = styled.div`
-  height: 5px;
   width: 100%;
   background: rgba(0, 0, 0, 0.15);
   overflow: hidden;
@@ -22,8 +21,8 @@ const Bar = styled.div`
 
 const Progress = styled.div`
   background: orangered;
+  height: 5px;
   width: 100%;
-  height: 100%;
 
   transition: ${props => !props.dragging && '250ms transform linear'};
   transform: translateX(${props => props.percent * 100 - 100}%);
