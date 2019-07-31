@@ -5,12 +5,12 @@ import { VideoCtx } from '..'
 
 const SeekBarCtx = createContext()
 
-function SeekBar() {
+function Wrapper({ children }) {
   const { seekPercent, childRef, parentRef, dragging } = useControls()
   return (
     <Styled.Bar ref={parentRef}>
       <SeekBarCtx.Provider value={{ seekPercent, childRef, dragging }}>
-        <Progress />
+        {children}
       </SeekBarCtx.Provider>
     </Styled.Bar>
   )
@@ -29,7 +29,17 @@ function Progress() {
   )
 }
 
+function SeekBar() {
+  return (
+    <Wrapper>
+      <Progress />
+    </Wrapper>
+  )
+}
+
 // SeekBar.propTypes = {}
 
 SeekBar.Progress = Progress
+SeekBar.Wrapper = Wrapper
+
 export default React.memo(SeekBar)
