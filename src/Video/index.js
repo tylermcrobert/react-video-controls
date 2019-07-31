@@ -4,15 +4,9 @@ import PropTypes from 'prop-types'
 import Styled from './Styled'
 import SeekBar from './SeekBar'
 import { Play, Pause, Mute, Unmute } from './Buttons'
+import formatSecs from './util/formatSecs'
 
-import TimeFormat from 'hh-mm-ss'
 export const VideoCtx = createContext()
-
-function formatSecs(secs) {
-  const rounded = Math.round(secs)
-  const formatted = TimeFormat.fromS(rounded)
-  return formatted
-}
 
 function Video({ src, className, autoPlay, children }) {
   const [video, state, functions, ref] = useVideo(
