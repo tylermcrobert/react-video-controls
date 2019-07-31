@@ -3,7 +3,7 @@ import { VideoCtx } from '../..'
 
 function getValidPercent(num) {
   if (num > 1) return 1
-  else if (num < 0) return 0
+  if (num < 0) return 0
   return num
 }
 
@@ -20,8 +20,8 @@ export default function useControls() {
   const parentRef = createRef()
   const childRef = createRef()
   const { controls, state, ref } = useContext(VideoCtx)
-  const seekPercent = 0
   const mouseDown = useRef(false)
+  const seekPercent = useRef(0)
 
   useEffect(
     () => {
@@ -31,6 +31,19 @@ export default function useControls() {
 
       if (!dragging) {
         $child.style.transform = null
+      }
+
+      function seek(e) {
+        seekPercent.current = getBarPercent(e, $parent)
+        const timeVal = state.duration * seekPercent.current
+        const translateVal = seekPercent.current * 100 - 100
+
+        /* Seek react (Slow) */
+        controls.seek(timeVal)
+        /* Seek video node */
+        $video.currentTime = timeVal
+        /* Change Bar Style */
+        $child.style.transform = `translateX(${translateVal}%)`
       }
 
       function handlemouseDown(e) {
@@ -48,15 +61,6 @@ export default function useControls() {
         if (mouseDown.current) seek(e)
       }
 
-      function seek(e) {
-        const seekPercent = getBarPercent(e, $parent)
-        const timeVal = state.duration * seekPercent
-
-        controls.seek(timeVal)
-        $video.currentTime = timeVal
-        $child.style.transform = `translateX(${seekPercent * 100 - 100}%)`
-      }
-
       $parent.addEventListener('mousedown', handlemouseDown)
       window.addEventListener('mouseup', handleMouseUp)
       window.addEventListener('mousemove', handleMouseMove)
@@ -70,5 +74,5 @@ export default function useControls() {
     [childRef, controls, dragging, parentRef, ref, state.duration]
   )
 
-  return { seekPercent, parentRef, childRef, dragging }
+  return { parentRef, childRef, dragging, seekPercent: seekPercent.current }
 }
