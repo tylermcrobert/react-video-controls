@@ -5,6 +5,7 @@ import Styled from './Styled'
 import SeekBar from './SeekBar'
 import { Play, Pause, Mute, Unmute, Fullscreen } from './Buttons'
 import useCtxSupliment from './hooks/useCtxSupliment'
+
 export const VideoCtx = createContext()
 
 function VideoProvider({ src, className, children, autoPlay, loop, muted }) {

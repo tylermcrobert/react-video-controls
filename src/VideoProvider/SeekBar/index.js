@@ -1,57 +1,15 @@
-import React, {
-  useState,
-  useRef,
-  createContext,
-  useContext,
-  useEffect,
-  createRef,
-} from 'react'
+import React, { createContext, useContext, useEffect } from 'react'
 import Styled from './Styled'
-
-function useControls() {
-  const parentRef = createRef()
-  const childRef = createRef()
-
-  const percent = 0.7
-
-  useEffect(
-    () => {
-      let dragging = false
-      const $child = childRef.current
-      const $parent = parentRef.current
-
-      function handlemouseDown() {
-        dragging = false
-      }
-
-      function handleMouseMove(e) {
-        const { offsetX } = e
-
-        console.log(offsetX, $parent.offsetLeft)
-
-        $child.style.transform = `translateX(${offsetX}px)`
-      }
-
-      $parent.addEventListener('mousedown', handlemouseDown)
-      window.addEventListener('mousemove', handleMouseMove)
-
-      return () => {
-        $parent.removeEventListener('mousedown', handlemouseDown)
-      }
-    },
-    [childRef, parentRef]
-  )
-
-  return { percent, parentRef, childRef }
-}
+import useControls from './hooks/useControls'
+import { VideoCtx } from '..'
 
 const SeekBarCtx = createContext()
 
 function SeekBar() {
-  const { percent, childRef, parentRef } = useControls()
+  const { seekPercent, childRef, parentRef, dragging } = useControls()
   return (
     <Styled.Bar ref={parentRef}>
-      <SeekBarCtx.Provider value={{ percent, childRef }}>
+      <SeekBarCtx.Provider value={{ seekPercent, childRef, dragging }}>
         <Progress />
       </SeekBarCtx.Provider>
     </Styled.Bar>
@@ -59,11 +17,19 @@ function SeekBar() {
 }
 
 function Progress() {
-  const { percent, childRef } = useContext(SeekBarCtx)
-  return <Styled.Progress percent={percent} ref={childRef} />
+  const { seekPercent, childRef, dragging } = useContext(SeekBarCtx)
+  const { state } = useContext(VideoCtx)
+  const playedPercent = state.time / state.duration || 0
+
+  return (
+    <Styled.Progress
+      percent={dragging ? seekPercent : playedPercent}
+      ref={childRef}
+    />
+  )
 }
 
 // SeekBar.propTypes = {}
 
 SeekBar.Progress = Progress
-export default SeekBar
+export default React.memo(SeekBar)
