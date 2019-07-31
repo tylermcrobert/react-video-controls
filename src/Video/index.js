@@ -4,43 +4,18 @@ import PropTypes from 'prop-types'
 import Styled from './Styled'
 import SeekBar from './SeekBar'
 import { Play, Pause, Mute, Unmute, Fullscreen } from './Buttons'
-import formatSecs from './util/formatSecs'
-import screenfull from 'screenfull'
-
+import useCtxSupliment from './hooks/useCtxSupliment'
 export const VideoCtx = createContext()
 
-function Video({ src, className, autoPlay, children }) {
-  const [video, state, functions, ref] = useVideo(
-    /* Could be passed in via children? */
-    <Styled.Video src={src} className={className} autoPlay={autoPlay} />
+function Video({ src, className, children, autoPlay, loop, muted }) {
+  const playerData = useVideo(
+    <Styled.Video {...{ autoPlay, src, loop, muted }} />
   )
-
-  const togglePlay = state.isPlaying ? functions.pause : functions.play
-
-  function fullScreen() {
-    if (ref.current && screenfull.enabled) {
-      screenfull.request(ref.current)
-    }
-  }
+  const ctxVal = useCtxSupliment(playerData)
 
   return (
     <Styled.Wrapper>
-      <VideoCtx.Provider
-        value={{
-          state: {
-            ...state,
-            formatted: {
-              duration: formatSecs(state.duration),
-              time: formatSecs(state.time),
-            },
-          },
-          ref,
-          controls: { ...functions, togglePlay, fullScreen },
-          video,
-        }}
-      >
-        {children}
-      </VideoCtx.Provider>
+      <VideoCtx.Provider value={ctxVal}>{children}</VideoCtx.Provider>
     </Styled.Wrapper>
   )
 }
