@@ -23,6 +23,7 @@ function Progress() {
 
   return (
     <Styled.Progress
+      dragging={dragging}
       percent={dragging ? seekPercent : playedPercent}
       ref={childRef}
     />

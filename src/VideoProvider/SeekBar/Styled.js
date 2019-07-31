@@ -25,7 +25,7 @@ const Progress = styled.div`
   width: 100%;
   height: 100%;
 
-  transition: 250ms transform linear;
+  transition: ${props => !props.dragging && '250ms transform linear'};
   transform: translateX(${props => props.percent * 100 - 100}%);
 `
 export default { Range, Bar, Progress }
