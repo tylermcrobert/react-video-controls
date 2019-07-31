@@ -1,4 +1,4 @@
-import { useState, useEffect, createRef, useContext } from 'react'
+import { useState, useEffect, createRef, useContext, useRef } from 'react'
 import { VideoCtx } from '../..'
 
 function getValidPercent(num) {
@@ -21,6 +21,7 @@ export default function useControls() {
   const childRef = createRef()
   const { controls, state, ref } = useContext(VideoCtx)
   const seekPercent = 0
+  const mouseDown = useRef(false)
 
   useEffect(
     () => {
@@ -28,18 +29,23 @@ export default function useControls() {
       const $parent = parentRef.current
       const $video = ref.current
 
+      if (!dragging) {
+        $child.style.transform = null
+      }
+
       function handlemouseDown(e) {
         setDragging(true)
+        mouseDown.current = true
         seek(e)
       }
 
       function handleMouseUp() {
         setDragging(false)
-        $child.style.transform = null
+        mouseDown.current = false
       }
 
       function handleMouseMove(e) {
-        if (dragging) seek(e)
+        if (mouseDown.current) seek(e)
       }
 
       function seek(e) {
