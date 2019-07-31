@@ -6,9 +6,9 @@ export default function useContextSuppliment(ctxValue) {
 
   const togglePlay = state.isPlaying ? functions.pause : functions.play
 
-  function fullScreen() {
+  function fullScreen(el) {
     if (ref.current && screenfull.enabled) {
-      screenfull.request(ref.current)
+      screenfull.request(el || ref.current)
     }
   }
 

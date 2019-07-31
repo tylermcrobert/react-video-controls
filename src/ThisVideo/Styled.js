@@ -14,6 +14,16 @@ const Wrapper = styled.div`
   }
 `
 
+const VideoWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+
+  video {
+    object-position: center;
+    height: 100%;
+  }
+`
+
 const ControlWrapper = styled.div`
   position: absolute;
   bottom: 0;
@@ -88,4 +98,5 @@ export default {
   ButtonWrapper,
   Progress,
   SeekBar,
+  VideoWrapper,
 }

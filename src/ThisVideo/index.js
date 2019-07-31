@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 // import PropTypes from 'prop-types'
-import VideoProvider, { VideoCtx, SeekBar } from '../VideoProvider'
+import VideoProvider, { VideoCtx } from '../VideoProvider'
 import Styled from './Styled'
 import { FullScreen, Play } from './Icons'
 
@@ -12,8 +12,9 @@ function PrettyVideo({ src, muted, autoPlay, loop }) {
   )
 }
 
+const playerRef = React.createRef()
+
 function VideoContent() {
-  console.log(SeekBar)
   const { video, state, controls } = useContext(VideoCtx)
   const [hovered, setHovered] = useState(false)
 
@@ -21,8 +22,11 @@ function VideoContent() {
     <Styled.Wrapper
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      ref={playerRef}
     >
-      <div onClick={controls.togglePlay}>{video}</div>
+      <Styled.VideoWrapper onClick={controls.togglePlay}>
+        {video}
+      </Styled.VideoWrapper>
       {!state.isPlaying && (
         <Styled.Play>
           <Play />
@@ -41,7 +45,7 @@ function VideoContent() {
           ) : (
             <Styled.Mute>Mute</Styled.Mute>
           )}
-          <Styled.Fullscreen>
+          <Styled.Fullscreen playerRef={playerRef}>
             <FullScreen />
           </Styled.Fullscreen>
         </Styled.ButtonWrapper>

@@ -24,5 +24,12 @@ export function Unmute(props) {
 
 export function Fullscreen(props) {
   const { controls } = useContext(VideoCtx)
-  return <Styled.Button onClick={controls.fullScreen} {...props} />
+  return (
+    <Styled.Button
+      onClick={() =>
+        controls.fullScreen(props.playerRef && props.playerRef.current)
+      }
+      {...props}
+    />
+  )
 }
