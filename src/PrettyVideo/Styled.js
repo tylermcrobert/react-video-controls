@@ -3,7 +3,7 @@ import * as Controls from '../Video'
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: auto auto 1fr auto;
+  grid-template-columns: auto auto 1fr auto auto;
   align-items: center;
   grid-gap: 1rem;
 `
@@ -40,4 +40,9 @@ const Unmute = styled(Controls.Unmute)`
   background: purple;
 `
 
-export default { Play, Pause, Wrapper, Mute, Unmute }
+const Fullscreen = styled(Controls.Fullscreen)`
+  ${buttonStyle}
+  background: purple;
+`
+
+export default { Play, Pause, Wrapper, Mute, Unmute, Fullscreen }

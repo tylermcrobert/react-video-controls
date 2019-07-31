@@ -8,6 +8,7 @@
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
     "react-use": "^10.3.0",
+    "screenfull": "^4.2.1",
     "styled-components": "^5.0.0-beta.8"
   },
   "scripts": {
