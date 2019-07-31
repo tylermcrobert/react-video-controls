@@ -7,7 +7,7 @@ import { Play, Pause, Mute, Unmute, Fullscreen } from './Buttons'
 import useCtxSupliment from './hooks/useCtxSupliment'
 export const VideoCtx = createContext()
 
-function Video({ src, className, children, autoPlay, loop, muted }) {
+function VideoProvider({ src, className, children, autoPlay, loop, muted }) {
   const playerData = useVideo(
     <Styled.Video {...{ autoPlay, src, loop, muted }} />
   )
@@ -20,9 +20,9 @@ function Video({ src, className, children, autoPlay, loop, muted }) {
   )
 }
 
-Video.propTypes = {
+VideoProvider.propTypes = {
   src: PropTypes.string.isRequired,
 }
 
 export { Play, Pause, SeekBar, Mute, Unmute, Fullscreen }
-export default Video
+export default VideoProvider

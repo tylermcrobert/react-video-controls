@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 // import PropTypes from 'prop-types'
-import Video, { VideoCtx, SeekBar } from '../Video'
+import VideoProvider, { VideoCtx, SeekBar } from '../VideoProvider'
 import Styled from './Styled'
 
 function PrettyVideo({ src, muted, autoPlay, loop }) {
   return (
-    <Video {...{ src, muted, autoPlay, loop }}>
+    <VideoProvider {...{ src, muted, autoPlay, loop }}>
       <VideoContent />
-    </Video>
+    </VideoProvider>
   )
 }
 
@@ -33,8 +33,6 @@ function VideoContent() {
         )}
         <Styled.Fullscreen>FullScreen</Styled.Fullscreen>
       </Styled.Wrapper>
-      {/* <hr /> */}
-      {/* <pre style={{ opacity: 0.4 }}>{JSON.stringify(state, null, 2)}</pre> */}
     </div>
   )
 }
