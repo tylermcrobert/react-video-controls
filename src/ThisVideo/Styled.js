@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/macro'
 import * as Controls from '../VideoProvider'
+import { SeekBar as SeekCtrl } from '../VideoProvider'
 
 const Wrapper = styled.div`
   position: relative;
@@ -67,6 +68,16 @@ const Fullscreen = styled(Controls.Fullscreen)`
   ${buttonStyle}
 `
 
+const SeekBar = styled(SeekCtrl)`
+  background: rgba(0, 0, 0, 0.07);
+`
+
+const Progress = styled(SeekCtrl.Progress)`
+  background: orange;
+  height: 3px;
+  border-radius: 1.5px;
+`
+
 export default {
   Play,
   Wrapper,
@@ -75,4 +86,6 @@ export default {
   Fullscreen,
   ControlWrapper,
   ButtonWrapper,
+  Progress,
+  SeekBar,
 }

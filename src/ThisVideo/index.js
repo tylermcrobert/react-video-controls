@@ -13,6 +13,7 @@ function PrettyVideo({ src, muted, autoPlay, loop }) {
 }
 
 function VideoContent() {
+  console.log(SeekBar)
   const { video, state, controls } = useContext(VideoCtx)
   const [hovered, setHovered] = useState(false)
 
@@ -28,7 +29,9 @@ function VideoContent() {
         </Styled.Play>
       )}
       <Styled.ControlWrapper enabled={state.isPlaying && hovered}>
-        <SeekBar />
+        <Styled.SeekBar>
+          <Styled.Progress />
+        </Styled.SeekBar>
         <Styled.ButtonWrapper>
           <div>
             {state.formatted.time} / {state.formatted.duration}
