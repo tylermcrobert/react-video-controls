@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   font-size: 0.85rem;
   * {
     text-transform: uppercase;
+    letter-spacing: 0.085em;
   }
 `
 
@@ -29,8 +30,8 @@ const ButtonWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
-  grid-gap: 1rem;
-  padding: 1rem;
+  grid-gap: 1.5rem;
+  padding: 1.5rem 1rem;
 `
 
 const buttonStyle = css``
@@ -41,8 +42,8 @@ const Play = styled(Controls.Play)`
   left: 50%;
   z-index: 10;
 
-  width: 7rem;
-  height: 7rem;
+  width: 6rem;
+  height: 6rem;
   border-radius: 50%;
 
   border: 2px solid white;
@@ -52,10 +53,6 @@ const Play = styled(Controls.Play)`
   align-items: center;
 
   transform: translate3d(-50%, -50%, 0);
-`
-
-const Pause = styled(Controls.Pause)`
-  ${buttonStyle}
 `
 
 const Mute = styled(Controls.Mute)`
@@ -72,7 +69,6 @@ const Fullscreen = styled(Controls.Fullscreen)`
 
 export default {
   Play,
-  Pause,
   Wrapper,
   Mute,
   Unmute,
