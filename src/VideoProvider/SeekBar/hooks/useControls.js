@@ -25,35 +25,34 @@ export default function useControls(duration, videoRef) {
       $video.currentTime = time
     }
 
-    function seek(mouseX) {
+    function onPan(e) {
       const { left, width } = $wrapper.getBoundingClientRect()
-      const percent = getValidPercent((mouseX - left) / width)
+      const percent = getValidPercent((e.srcEvent.clientX - left) / width)
       const time = duration * percent
 
-      setDragging(true)
       DOMUpdate(time, percent)
     }
 
-    function clearSeek() {
+    function onPanEnd() {
+      // $video.play()
       setDragging(false)
     }
 
-    function onPan(e) {
-      seek(e.srcEvent.clientX)
-    }
-
-    function onPanEnd() {
-      clearSeek()
+    function onPanStart() {
+      // $video.pause()
+      setDragging(true)
     }
 
     hammer.on('pan', onPan)
     hammer.on('tap', onPan)
     hammer.on('panend', onPanEnd)
+    hammer.on('panstart', onPanStart)
 
     return () => {
       hammer.off('pan')
-      hammer.off('tap', onPan)
+      hammer.off('tap')
       hammer.off('panend')
+      hammer.off('panStart')
     }
   }, [duration, parentRef, videoRef])
 
