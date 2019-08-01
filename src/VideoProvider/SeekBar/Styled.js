@@ -19,12 +19,15 @@ const Bar = styled.div`
   overflow: hidden;
 `
 
-const Progress = styled.div`
+const Progress = styled.div.attrs(props => ({
+  style: {
+    transform: `translateX(${props.percent * 100 - 100}%)`,
+  },
+}))`
   background: orangered;
   height: 5px;
   width: 100%;
 
   transition: ${props => !props.dragging && '250ms transform linear'};
-  transform: translateX(${props => props.percent * 100 - 100}%);
 `
 export default { Range, Bar, Progress }
