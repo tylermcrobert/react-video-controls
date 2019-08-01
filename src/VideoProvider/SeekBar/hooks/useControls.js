@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from 'react'
+import { useEffect, useRef, useContext } from 'react'
 import Hammer from 'hammerjs'
 import { MemoizedCtx } from '..'
 
@@ -9,8 +9,7 @@ function getValidPercent(num) {
 }
 
 export default function useControls() {
-  const { duration, videoRef } = useContext(MemoizedCtx)
-  const [dragging, setDragging] = useState(false)
+  const { duration, videoRef, setSeeking } = useContext(MemoizedCtx)
   const parentRef = useRef()
   const childRef = useRef()
   const seekPercent = useRef(0)
@@ -36,13 +35,13 @@ export default function useControls() {
     }
 
     function onPanEnd() {
-      // $video.play()
-      setDragging(false)
+      $video.play()
+      setSeeking(false)
     }
 
     function onPanStart() {
-      // $video.pause()
-      setDragging(true)
+      $video.pause()
+      setSeeking(true)
     }
 
     hammer.on('pan', onPan)
@@ -56,7 +55,7 @@ export default function useControls() {
       hammer.off('panend')
       hammer.off('panstart')
     }
-  }, [duration, parentRef, videoRef])
+  }, [duration, parentRef, setSeeking, videoRef])
 
-  return { parentRef, childRef, dragging, seekPercent: seekPercent.current }
+  return { parentRef, childRef, seekPercent: seekPercent.current }
 }

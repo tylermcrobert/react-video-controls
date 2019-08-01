@@ -26,12 +26,15 @@ function VideoContent() {
       <Styled.VideoWrapper onClick={controls.togglePlay}>
         {video}
       </Styled.VideoWrapper>
-      {!state.isPlaying && (
-        <Styled.Play>
-          <Play />
-        </Styled.Play>
-      )}
-      <Styled.ControlWrapper enabled={state.isPlaying && hovered}>
+      {!state.isPlaying &&
+        (!state.seeking && (
+          <Styled.Play>
+            <Play />
+          </Styled.Play>
+        ))}
+      <Styled.ControlWrapper
+        enabled={(state.isPlaying && hovered) || state.seeking}
+      >
         <Styled.SeekBar>
           <Styled.Progress />
         </Styled.SeekBar>
