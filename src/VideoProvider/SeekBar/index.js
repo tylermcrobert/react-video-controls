@@ -4,21 +4,23 @@ import useControls from './hooks/useControls'
 import { VideoCtx } from '..'
 
 const SeekBarCtx = createContext()
+export const MemoizedCtx = createContext()
 
 function ContextMemoizer(props) {
   const { state, ref } = useContext(VideoCtx)
 
   return useMemo(
-    () => <SeekBarInner {...props} videoRef={ref} duration={state.duration} />,
+    () => (
+      <MemoizedCtx.Provider value={{ videoRef: ref, duration: state.duration }}>
+        <SeekBarInner {...props} />
+      </MemoizedCtx.Provider>
+    ),
     [props, ref, state.duration]
   )
 }
 
-function SeekBarInner({ children, className, duration, videoRef }) {
-  const { seekPercent, childRef, parentRef, dragging } = useControls(
-    duration,
-    videoRef
-  )
+function SeekBarInner({ children, className }) {
+  const { seekPercent, childRef, parentRef, dragging } = useControls()
   return (
     <Styled.Bar ref={parentRef} className={className}>
       <SeekBarCtx.Provider value={{ seekPercent, childRef, dragging }}>

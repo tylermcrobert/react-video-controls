@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import Hammer from 'hammerjs'
+import { MemoizedCtx } from '..'
 
 function getValidPercent(num) {
   if (num > 1) return 1
@@ -7,7 +8,8 @@ function getValidPercent(num) {
   return num
 }
 
-export default function useControls(duration, videoRef) {
+export default function useControls() {
+  const { duration, videoRef } = useContext(MemoizedCtx)
   const [dragging, setDragging] = useState(false)
   const parentRef = useRef()
   const childRef = useRef()
