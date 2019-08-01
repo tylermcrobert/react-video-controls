@@ -20,7 +20,6 @@ function Progress({ className }) {
   const { seekPercent, childRef, dragging } = useContext(SeekBarCtx)
   const { state } = useContext(VideoCtx)
   const playedPercent = state.time / state.duration || 0
-  console.log({ seekPercent })
 
   return (
     <Styled.Progress

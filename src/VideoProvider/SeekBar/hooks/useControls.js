@@ -16,6 +16,8 @@ function getBarPercent(e, el) {
 }
 
 export default function useControls() {
+  console.log('_________USECONTROLS_________')
+
   const { controls, state, ref } = useContext(VideoCtx)
 
   const [dragging, setDragging] = useState(false)
@@ -28,6 +30,7 @@ export default function useControls() {
 
   useEffect(
     () => {
+      console.log('__EFFECT MOUNTED__')
       /* get dom elements */
       const $child = childRef.current
       const $parent = parentRef.current
@@ -40,6 +43,8 @@ export default function useControls() {
 
       /* seek video */
       function seek(e) {
+        console.log('seek()')
+
         seekPercent.current = getBarPercent(e, $parent)
         const timeVal = state.duration * seekPercent.current
         const translateVal = seekPercent.current * 100 - 100
@@ -54,6 +59,7 @@ export default function useControls() {
 
       /* Triggers on each mousedown event */
       function handlemouseDown(e) {
+        console.log('handleMouseDown()')
         setDragging(true)
         mouseDown.current = true
         seek(e)
@@ -61,12 +67,15 @@ export default function useControls() {
 
       /* Triggers on each mouseup event */
       function handleMouseUp() {
+        console.log('handleMouseUp()')
         setDragging(false)
         mouseDown.current = false
       }
 
       /* Triggers always mouse is moving */
       function handleMouseMove(e) {
+        console.log('handleMouseMove() ', 'SCREEN_X:', e.screenX)
+
         if (mouseDown.current) seek(e)
       }
 
@@ -76,6 +85,7 @@ export default function useControls() {
       window.addEventListener('mousemove', handleMouseMove)
 
       return () => {
+        console.log('__EFFECT CLEANUP__')
         /* remove events */
         $parent.removeEventListener('mousedown', handlemouseDown)
         window.removeEventListener('mouseup', handleMouseUp)
