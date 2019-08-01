@@ -52,7 +52,7 @@ export default function useControls(duration, videoRef) {
       hammer.off('pan')
       hammer.off('tap')
       hammer.off('panend')
-      hammer.off('panStart')
+      hammer.off('panstart')
     }
   }, [duration, parentRef, videoRef])
 
