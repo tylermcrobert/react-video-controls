@@ -83,7 +83,7 @@ const SeekBar = styled(Controls.SeekBar)`
 
 const Progress = styled(Controls.SeekBar.Progress)`
   background: orange;
-  height: 3px;
+  ${'' /* height: 3px; */}
   border-radius: 1.5px;
 `
 

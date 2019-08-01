@@ -1,5 +1,5 @@
-import { useState, useEffect, createRef, useContext, useRef } from 'react'
-import { VideoCtx } from '../..'
+import { useState, useEffect, useRef } from 'react'
+import Hammer from 'hammerjs'
 
 function getValidPercent(num) {
   if (num > 1) return 1
@@ -7,93 +7,55 @@ function getValidPercent(num) {
   return num
 }
 
-function getBarPercent(e, el) {
-  const { left, width } = el.getBoundingClientRect()
-  const objX = e.clientX - left
-  const percent = objX / width
-  const validPercent = getValidPercent(percent)
-  return validPercent
-}
-
-export default function useControls() {
-  console.log('_________USECONTROLS_________')
-
-  const { controls, state, ref } = useContext(VideoCtx)
-
+export default function useControls(duration, videoRef) {
   const [dragging, setDragging] = useState(false)
-
-  const parentRef = createRef()
-  const childRef = createRef()
-
-  const mouseDown = useRef(false)
+  const parentRef = useRef()
+  const childRef = useRef()
   const seekPercent = useRef(0)
 
-  useEffect(
-    () => {
-      console.log('__EFFECT MOUNTED__')
-      /* get dom elements */
-      const $child = childRef.current
-      const $parent = parentRef.current
-      const $video = ref.current
+  useEffect(() => {
+    const $video = videoRef.current
+    const $wrapper = parentRef.current
+    const $bar = childRef.current
 
-      /* clear style attr if not dragging */
-      if (!dragging) {
-        $child.style.transform = null
-      }
+    const hammer = new Hammer($wrapper)
 
-      /* seek video */
-      function seek(e) {
-        console.log('seek()')
+    function DOMUpdate(time, percent) {
+      $bar.style.transform = `translateX(${percent * 100 - 100}%)`
+      $video.currentTime = time
+    }
 
-        seekPercent.current = getBarPercent(e, $parent)
-        const timeVal = state.duration * seekPercent.current
-        const translateVal = seekPercent.current * 100 - 100
+    function seek(mouseX) {
+      const { left, width } = $wrapper.getBoundingClientRect()
+      const percent = getValidPercent((mouseX - left) / width)
+      const time = duration * percent
 
-        /* Seek react (Slow) */
-        controls.seek(timeVal)
-        /* Seek video node */
-        $video.currentTime = timeVal
-        /* Change Bar Style */
-        $child.style.transform = `translateX(${translateVal}%)`
-      }
+      setDragging(true)
+      DOMUpdate(time, percent)
+    }
 
-      /* Triggers on each mousedown event */
-      function handlemouseDown(e) {
-        console.log('handleMouseDown()')
-        setDragging(true)
-        mouseDown.current = true
-        seek(e)
-      }
+    function clearSeek() {
+      setDragging(false)
+    }
 
-      /* Triggers on each mouseup event */
-      function handleMouseUp() {
-        console.log('handleMouseUp()')
-        setDragging(false)
-        mouseDown.current = false
-      }
+    function onPan(e) {
+      seek(e.srcEvent.clientX)
+    }
 
-      /* Triggers always mouse is moving */
-      function handleMouseMove(e) {
-        console.log('handleMouseMove() ', 'SCREEN_X:', e.screenX)
+    function onPanEnd() {
+      clearSeek()
+    }
 
-        if (mouseDown.current) seek(e)
-      }
+    hammer.on('pan', onPan)
+    hammer.on('tap', onPan)
+    hammer.on('panend', onPanEnd)
 
-      /* Bind events */
-      $parent.addEventListener('mousedown', handlemouseDown)
-      window.addEventListener('mouseup', handleMouseUp)
-      window.addEventListener('mousemove', handleMouseMove)
-
-      return () => {
-        console.log('__EFFECT CLEANUP__')
-        /* remove events */
-        $parent.removeEventListener('mousedown', handlemouseDown)
-        window.removeEventListener('mouseup', handleMouseUp)
-        window.removeEventListener('mousemove', handleMouseMove)
-      }
-    },
-    [childRef, controls, dragging, parentRef, ref, state.duration]
-  )
+    return () => {
+      hammer.off('pan')
+      hammer.off('tap', onPan)
+      hammer.off('panend')
+    }
+  }, [duration, parentRef, videoRef])
 
   return { parentRef, childRef, dragging, seekPercent: seekPercent.current }
 }

@@ -17,6 +17,7 @@ const Bar = styled.div`
   width: 100%;
   background: rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  cursor: pointer;
 `
 
 const Progress = styled.div.attrs(props => ({
@@ -28,6 +29,6 @@ const Progress = styled.div.attrs(props => ({
   height: 5px;
   width: 100%;
 
-  transition: ${props => !props.dragging && '250ms transform linear'};
+  transition: ${props => (!props.dragging ? '250ms transform linear' : '0ms')};
 `
 export default { Range, Bar, Progress }
