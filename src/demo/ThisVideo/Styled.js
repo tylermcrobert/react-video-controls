@@ -80,10 +80,22 @@ const Fullscreen = styled(Controls.Fullscreen)`
 
 const SeekBar = styled(Controls.SeekBar)`
   background: rgba(0, 0, 0, 0.07);
+  position: relative;
+  overflow: visible;
+
+  /* increase clickable area */
+  &::after {
+    content: '';
+    position: absolute;
+    top: -7px;
+    bottom: -7px;
+    width: 100%;
+  }
 `
 
 const Progress = styled(Controls.SeekBar.Progress)`
   background: orange;
+  height: 3px;
 `
 
 export default {
