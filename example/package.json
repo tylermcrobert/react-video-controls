@@ -1,6 +1,6 @@
 {
-  "name": "react-video-example",
-  "homepage": "https://tylermcrobert.github.io/react-video",
+  "name": "react-video-controls-example",
+  "homepage": "https://tylermcrobert.github.io/react-video-controls",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
@@ -9,7 +9,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",
-    "react-video": "file:.."
+    "react-video-controls": "file:.."
   },
   "scripts": {
     "start": "react-scripts start",

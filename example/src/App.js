@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import ExampleComponent from 'react-video'
+import ExampleComponent from 'react-video-controls'
 
 export default class App extends Component {
   render () {

@@ -1,10 +1,10 @@
 {
-  "name": "react-video",
-  "version": "0.0.1",
+  "name": "react-video-controls",
+  "version": "1.0.0",
   "description": "A library that gives video controller components to use with HTML5 videos",
   "author": "tylermcrobert",
   "license": "MIT",
-  "repository": "tylermcrobert/react-video",
+  "repository": "tylermcrobert/react-video-controls",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
