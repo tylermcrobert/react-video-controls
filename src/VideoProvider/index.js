@@ -8,11 +8,9 @@ import useCtxSupliment from './hooks/useCtxSupliment'
 
 export const VideoCtx = createContext()
 
-function VideoProvider({ src, children, autoPlay, loop, muted }) {
-  const playerData = useVideo(
-    <Styled.Video {...{ autoPlay, src, loop, muted }} />
-  )
+function VideoProvider({ children, ...videoProps }) {
   const wrapperRef = useRef()
+  const playerData = useVideo(<Styled.Video {...videoProps} />)
   const ctxVal = useCtxSupliment(playerData, wrapperRef)
   return <VideoCtx.Provider value={ctxVal}>{children}</VideoCtx.Provider>
 }
