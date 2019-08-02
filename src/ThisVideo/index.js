@@ -11,17 +11,15 @@ function PrettyVideo({ src, muted, autoPlay, loop }) {
   )
 }
 
-const playerRef = React.createRef()
-
 function VideoContent() {
-  const { video, state, controls } = useContext(VideoCtx)
+  const { video, state, controls, wrapperRef } = useContext(VideoCtx)
   const [hovered, setHovered] = useState(false)
 
   return (
     <Styled.Wrapper
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      ref={playerRef}
+      ref={wrapperRef}
     >
       <Styled.VideoWrapper onClick={controls.togglePlay}>
         {video}
@@ -47,7 +45,7 @@ function VideoContent() {
           ) : (
             <Styled.Mute>Mute</Styled.Mute>
           )}
-          <Styled.Fullscreen playerRef={playerRef}>
+          <Styled.Fullscreen>
             <FullScreen />
           </Styled.Fullscreen>
         </Styled.ButtonWrapper>

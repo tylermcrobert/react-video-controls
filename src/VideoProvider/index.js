@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React, { createContext, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useVideo } from 'react-use'
 import Styled from './Styled'
@@ -12,13 +12,9 @@ function VideoProvider({ src, children, autoPlay, loop, muted }) {
   const playerData = useVideo(
     <Styled.Video {...{ autoPlay, src, loop, muted }} />
   )
-  const ctxVal = useCtxSupliment(playerData)
-
-  return (
-    <Styled.Wrapper>
-      <VideoCtx.Provider value={ctxVal}>{children}</VideoCtx.Provider>
-    </Styled.Wrapper>
-  )
+  const wrapperRef = useRef()
+  const ctxVal = useCtxSupliment(playerData, wrapperRef)
+  return <VideoCtx.Provider value={ctxVal}>{children}</VideoCtx.Provider>
 }
 
 VideoProvider.propTypes = {
