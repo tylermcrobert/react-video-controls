@@ -12,10 +12,12 @@ function PrettyVideo({ src, muted, autoPlay, loop }) {
 }
 
 function VideoContent() {
-  const { video, state, controls } = useContext(VideoCtx)
+  const { video, state, controls, wrapperRef } = useContext(VideoCtx)
   return (
-    <div>
-      <div onClick={controls.togglePlay}>{video}</div>
+    <Styled.VideoWrapper ref={wrapperRef}>
+      <div style={{ flex: 1 }} onClick={controls.togglePlay}>
+        {video}
+      </div>
       <Styled.Wrapper>
         {state.isPlaying ? (
           <Styled.Pause>Pause</Styled.Pause>
@@ -25,15 +27,18 @@ function VideoContent() {
         <div>
           {state.formatted.time} / {state.formatted.duration}
         </div>
-        <SeekBar />
+        <Styled.SeekBar>
+          <Styled.Progress />
+        </Styled.SeekBar>
+
         {state.muted ? (
           <Styled.Unmute>Un-Mute</Styled.Unmute>
         ) : (
           <Styled.Mute>Mute</Styled.Mute>
         )}
-        <Styled.Fullscreen>FullScreen</Styled.Fullscreen>
+        <Styled.Fullscreen>Fullsc.</Styled.Fullscreen>
       </Styled.Wrapper>
-    </div>
+    </Styled.VideoWrapper>
   )
 }
 
