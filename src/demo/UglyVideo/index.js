@@ -10,7 +10,7 @@ import VideoProvider, {
   Fullscreen,
   VideoCtx,
   SeekBar,
-} from '../VideoProvider'
+} from '../../VideoProvider'
 
 function UglyVideo() {
   const { video, state } = useContext(VideoCtx)

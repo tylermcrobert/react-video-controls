@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components/macro'
-import * as Controls from '../VideoProvider'
+import * as Controls from '../../VideoProvider'
 
 const Wrapper = styled.div`
   display: grid;

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import VideoProvider, { VideoCtx } from '../VideoProvider'
+import VideoProvider, { VideoCtx } from '../../VideoProvider'
 import Styled from './Styled'
 import { FullScreen, Play } from './Icons'
 

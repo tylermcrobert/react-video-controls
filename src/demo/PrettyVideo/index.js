@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 // import PropTypes from 'prop-types'
-import VideoProvider, { VideoCtx, SeekBar } from '../VideoProvider'
+import VideoProvider, { VideoCtx, SeekBar } from '../../VideoProvider'
 import Styled from './Styled'
 
 function PrettyVideo({ src, muted, autoPlay, loop }) {
