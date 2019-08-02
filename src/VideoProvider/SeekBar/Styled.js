@@ -29,6 +29,6 @@ const Progress = styled.div.attrs(props => ({
   height: 5px;
   width: 100%;
 
-  transition: ${props => (!props.dragging ? '250ms transform linear' : '0ms')};
+  ${'' /* transition: ${props => (!props.dragging ? '250ms transform linear' : '0ms')}; */}
 `
 export default { Range, Bar, Progress }
