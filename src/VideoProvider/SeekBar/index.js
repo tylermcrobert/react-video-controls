@@ -26,10 +26,10 @@ function ContextMemoizer(props) {
 }
 
 function SeekBarInner({ children, className }) {
-  const { seekPercent, childRef, parentRef } = useControls()
+  const { childRef, parentRef } = useControls()
   return (
     <Styled.Bar ref={parentRef} className={className}>
-      <SeekBarCtx.Provider value={{ seekPercent, childRef }}>
+      <SeekBarCtx.Provider value={{ childRef }}>
         {children || <Progress />}
       </SeekBarCtx.Provider>
     </Styled.Bar>
@@ -37,7 +37,7 @@ function SeekBarInner({ children, className }) {
 }
 
 function Progress({ className }) {
-  const { seekPercent, childRef } = useContext(SeekBarCtx)
+  const { childRef } = useContext(SeekBarCtx)
   const { state } = useContext(VideoCtx)
   const playedPercent = state.time / state.duration || 0
 
@@ -45,7 +45,7 @@ function Progress({ className }) {
     <Styled.Progress
       className={className}
       dragging={state.seeking}
-      percent={state.seeking ? seekPercent : playedPercent}
+      percent={playedPercent}
       ref={childRef}
     />
   )

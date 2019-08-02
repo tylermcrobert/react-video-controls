@@ -12,7 +12,6 @@ export default function useControls() {
   const { duration, videoRef, setSeeking } = useContext(MemoizedCtx)
   const parentRef = useRef()
   const childRef = useRef()
-  const seekPercent = useRef(0)
 
   useEffect(() => {
     const $video = videoRef.current
@@ -57,5 +56,5 @@ export default function useControls() {
     }
   }, [duration, parentRef, setSeeking, videoRef])
 
-  return { parentRef, childRef, seekPercent: seekPercent.current }
+  return { parentRef, childRef }
 }
