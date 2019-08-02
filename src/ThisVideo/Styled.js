@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   font-family: helvetica;
   font-size: 0.85rem;
+
   * {
     text-transform: uppercase;
     letter-spacing: 0.085em;
@@ -83,8 +84,6 @@ const SeekBar = styled(Controls.SeekBar)`
 
 const Progress = styled(Controls.SeekBar.Progress)`
   background: orange;
-  ${'' /* height: 3px; */}
-  border-radius: 1.5px;
 `
 
 export default {
