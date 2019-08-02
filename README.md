@@ -13,16 +13,36 @@ npm install --save react-video
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from "react";
+import VideoProvider, {
+  VideoCtx,
+  Mute,
+  Play,
+  Pause,
+  Unmute,
+  Fullscreen,
+  SeekBar
+} from "react-video";
 
-import MyComponent from 'react-video'
-
-class Example extends Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
+function Video() {
+  return (
+    <VideoProvider>
+      <VideoCtx.Consumer>
+        {({ video, state }) => (
+          <div>
+            {video}
+            <SeekBar />
+            <Play>Play</Play>
+            <Pause>Pause</Pause>
+            {state.formatted.time} / {state.formatted.duration}
+            <Mute>Mute</Mute>
+            <Unmute>Un-Mute</Unmute>
+            <Fullscreen>FullScreen</Fullscreen>
+          </div>
+        )}
+      </VideoCtx.Consumer>
+    </VideoProvider>
+  );
 }
 ```
 
