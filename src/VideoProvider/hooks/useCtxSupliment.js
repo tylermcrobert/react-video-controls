@@ -10,7 +10,7 @@ export default function useContextSuppliment(ctxValue) {
 
   function fullScreen(el) {
     if (ref.current && screenfull.enabled) {
-      screenfull.request(el || ref.current)
+      screenfull.toggle(el || ref.current)
     }
   }
 
