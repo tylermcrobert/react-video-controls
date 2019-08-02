@@ -12,6 +12,7 @@ export default function useControls() {
   const { duration, videoRef, setSeeking } = useContext(MemoizedCtx)
   const parentRef = useRef()
   const childRef = useRef()
+  const prevPlaying = useRef()
 
   useEffect(() => {
     const $video = videoRef.current
@@ -34,11 +35,12 @@ export default function useControls() {
     }
 
     function onPanEnd() {
-      $video.play()
+      if (prevPlaying.current === true) $video.play()
       setSeeking(false)
     }
 
     function onPanStart() {
+      prevPlaying.current = !$video.paused
       $video.pause()
       setSeeking(true)
     }
