@@ -12,7 +12,7 @@ export default function useControls() {
   const { duration, videoRef, setSeeking } = useContext(MemoizedCtx)
   const parentRef = useRef()
   const childRef = useRef()
-  const prevPlaying = useRef()
+  const prevPlaying = useRef(false)
 
   useEffect(() => {
     const $video = videoRef.current
