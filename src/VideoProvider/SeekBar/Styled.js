@@ -25,8 +25,8 @@ const Progress = styled.div.attrs(props => ({
     transform: `translateX(${props.percent * 100 - 100}%)`,
   },
 }))`
-  background: orangered;
-  height: 5px;
+  background: black;
+  height: 10px;
   width: 100%;
 
   ${'' /* transition: ${props => (!props.dragging ? '250ms transform linear' : '0ms')}; */}
