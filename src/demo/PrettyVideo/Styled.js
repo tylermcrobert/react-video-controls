@@ -35,7 +35,7 @@ const Play = styled(Controls.Play)`
 
 const Pause = styled(Controls.Pause)`
   ${buttonStyle}
-  background: green;
+  background: seagreen;
 `
 
 const Mute = styled(Controls.Mute)`
