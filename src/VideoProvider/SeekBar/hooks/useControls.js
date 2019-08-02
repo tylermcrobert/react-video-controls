@@ -22,7 +22,7 @@ export default function useControls() {
     const hammer = new Hammer($wrapper)
 
     function DOMUpdate(time, percent) {
-      $bar.style.transform = `translateX(${percent * 100 - 100}%)`
+      $bar.style.width = `${percent * 100}%`
       $video.currentTime = time
     }
 

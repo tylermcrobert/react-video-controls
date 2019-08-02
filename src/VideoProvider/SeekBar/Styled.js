@@ -22,7 +22,7 @@ const Bar = styled.div`
 
 const Progress = styled.div.attrs(props => ({
   style: {
-    transform: `translateX(${props.percent * 100 - 100}%)`,
+    width: `${props.percent * 100}%`,
   },
 }))`
   background: black;
