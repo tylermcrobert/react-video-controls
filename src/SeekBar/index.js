@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useMemo } from 'react'
 import Styled from './Styled'
 import useControls from './hooks/useControls'
-import { VideoCtx } from '..'
+import { VideoCtx } from '../index'
 
 const SeekBarCtx = createContext()
 export const MemoizedCtx = createContext()
