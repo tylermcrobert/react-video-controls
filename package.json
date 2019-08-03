@@ -44,6 +44,7 @@
     "eslint-plugin-react": "^7.14.3",
     "hammerjs": "^2.0.8",
     "hh-mm-ss": "^1.2.0",
+    "prop-types": "^15.7.2",
     "react-use": "^10.4.0",
     "screenfull": "^4.2.1",
     "styled-components": "^4.3.2"
