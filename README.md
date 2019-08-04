@@ -46,6 +46,30 @@ function Video() {
 }
 ```
 
+## Styling
+
+Components can be styled easily using the className attribute, or css-in-jss
+
+### CSS
+
+```jsx
+<Play className="playButton">Play</Play>
+```
+
+### Styled Components
+
+```jsx
+import { Play } from 'react-video-controls'
+
+const StyledPlay = styled(Play)`
+  padding: 10px;
+  background: blue;
+  border-radius: 2px;
+`
+
+```
+
+
 ## License
 
 MIT © [tylermcrobert](https://github.com/tylermcrobert)
