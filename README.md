@@ -1,4 +1,4 @@
-# react-video
+# react-video-controls
 
 > Gives video controller components to use with HTML5 videos
 
