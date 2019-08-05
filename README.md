@@ -69,6 +69,14 @@ const StyledPlay = styled(Play)`
 
 ```
 
+# Progressbar Styling
+Progressbar can be controlled individually of its wrapper
+
+```jsx
+<SeekBar className="progressBar">
+  <SeekBar.Progress className="progressBar--progress" />
+</SeekBar>
+```
 
 ## License
 
