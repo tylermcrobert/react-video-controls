@@ -69,7 +69,7 @@ const StyledPlay = styled(Play)`
 
 ```
 
-# Progressbar Styling
+## Progressbar Styling
 Progressbar can be controlled individually of its wrapper
 
 ```jsx
